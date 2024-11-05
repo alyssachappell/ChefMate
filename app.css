@@ -1,25 +1,26 @@
-html {zoom: 100%;}
+/* html {zoom: 100%;} */
 
-body{
-    padding:0;
-    background-color: ivory;
+body {
+    padding: 0;
+    background-color: #fff; 
     text-align: left;
     min-width: 200px;
 }
 
 h1 {
-    color: maroon;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: #306327; /* Dark green */
+    text-shadow: -1px 0 #75A12D, 0 1px #75A12D, 1px 0 #75A12D, 0 -1px #75A12D; /* Theme color shadow */
     font-size: 2rem;
     line-height: 2rem;
     text-align: center;
 }
 
-h2{
-    margin-top:0;
-    margin-bottom:.5rem;
-    color: maroon;
+h2 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: #306327; /* Dark green */
 }
+
 .center-screen {
     position: absolute;
     top: 50%;
@@ -28,95 +29,192 @@ h2{
     transform: translate(-50%, -50%);
     text-align: center;
 }
-#welcome{
-    background-color: rgba(255,255,255,0.8);
-    display:inline-block;
-    margin:3rem;
-    padding:1rem 2rem 1rem 2rem ;
+
+#welcome {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+    margin: 3rem;
+    padding: 1rem 2rem;
     text-align: left;
 }
 
-.page{
-    background-color: Beige;
-    display:inline-block;
-    padding:1rem;
+.page {
+    background-color: #D0CED1; /* Theme light grey */
+    display: inline-block;
+    padding: 1rem;
     text-align: left;
     border-radius: 5px;
-    border: 2px lightgrey solid;
+    border: 2px solid #75A12D; /* Lighter green border */
 }
 
-#welcome p{
+#welcome p {
     line-height: 1.1rem;
     font-weight: bold;
 }
 
-#hamburger{
-    cursor: pointer; 
-    /*background-color:white; */
-    color:black; 
-    padding:4px;
-    margin:0;
-    /*font-size: 1.2rem;*/
+#hamburger {
+    cursor: pointer;
+    color: #306327; /* Dark green */
+    padding: 4px;
+    margin: 0;
 }
 
-.tools{
-    color:grey;
-    cursor:pointer;
+.tools {
+    color: #6597C7; /* Theme blue */
+    cursor: pointer;
 }
 
-.tools:hover{
-    color:green;
+.tools:hover {
+    color: #306327; /* Dark green on hover */
 }
 
-.inventory-table{
-    background-color: lightgrey;
-
+.inventory-table {
+    background-color: #f4f4f4;
 }
-
 
 .inventory-table th {
-    color: maroon;
-    background-color: lightyellow;
-    margin:1px;
-    padding: 4px 8px 4px 8px;
+    color: #306327; /* Dark green */
+    background-color: #D0CED1; /* Light grey background */
+    margin: 1px;
+    padding: 4px 8px;
 }
+
 .inventory-table td {
     color: black;
-    margin:1px;
-    padding: 4px 8px 4px 8px;
+    margin: 1px;
+    padding: 4px 8px;
     white-space: nowrap;
     text-align: right;
-
 }
 
-.working{
+.working {
     background-image: url(images/progresswheel.gif);
     background-position: left;
     background-size: 20px;
     background-repeat: no-repeat;
 }
 
-
 .inventory-table input {
-    width:100%;
-    border:none;
+    width: 100%;
+    border: none;
     text-align: right;
     background-color: transparent;
 }
 
-.sticky{
-    position:sticky;
-    top:0;
+.sticky {
+    position: sticky;
+    top: 0;
 }
 
-.hidden{
-    display:none;
+.hidden {
+    display: none;
 }
-.inactive{
-    background-color: lightyellow;
+
+.inactive {
+    background-color: #D0CED1; /* Light grey */
 }
-.active{
+
+.active {
     background-color: white;
 }
 
+/* INDEX PAGE BUTTONS */
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+}
 
+.btn {
+    background-color: #74A12E; /* Theme green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #306327; /* Dark green on hover */
+}
+
+/* AFTER LOGIN SCREEN */
+.dashboard {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* NAVIGATION */
+.navbar {
+    background-color: #306327; /* Dark green */
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #75A12D; /* Lighter green */
+}
+
+.container {
+    margin-top: 70px;
+}
+
+/* ADD RECIPE PAGE */
+#add-recipe {
+    padding: 200px;
+}
+
+#recipe-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#recipe-form div {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #306327; /* Dark green */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #74A12E; /* Theme green on hover */
+}

@@ -57,32 +57,44 @@ const authenticated_menu=[
 ]
 
 
-function show_home(){
-    
-    //builds the menu for the home screen
-    const menu=[]
-    //current_menu is a global variable that is built based on the set of menu items defined for users and their roles. 
-    for(item of current_menu){
-        if(item.home){
-            menu.push(`<a onClick="${item.function}">${item.home}</a>`)
+function show_home() {
+    // Builds the menu for the home screen
+    const menu = [];
+    for (item of current_menu) {
+        if (item.home) {
+            menu.push(`<a onClick="${item.function}">${item.home}</a>`);
         }
     }
 
-    //the main page is rendered with the Brooker's Ice cream logo. 
+    // The main page is rendered with the Brooker's Ice Cream logo. 
+    tag("canvas").innerHTML = `
+        <div class="center-screen">
+            <p><img height="${window.innerHeight * 0.6}" src="images/chefmate-logo.png" alt="ChefMate Logo"></p>
+            <div class="button-container">
+                <button id="createAccount" class="btn">Create Account</button>
+                <button id="login_button" type="button" onclick="showLoginPage()" class="btn">Login</button>
+            </div>
+            <div style="text-align:center"></div>
+        </div>
+    `;
 
-    tag("canvas").innerHTML=` 
-    <div class="center-screen">
-    
-    <p><img height="${window.innerHeight * .6}" src="images/brookers-logo.png"></p>
-    <div style="text-align:center"></div>
-    
-    
-    </div>
-    `
+    // The navigation menu is hidden (the three parallel lines are shown) when the homepage is rendered.
+    hide_menu();
 
-    //The navigation menu is hidden (the three parallel lines are show) when the homepage is rendered.
-    hide_menu()
+    // Add event listeners to the buttons
+    document.getElementById('createAccount').addEventListener('click', showCreateAccountPage);
+
+
+    // Add event listeners to the buttons
+    document.getElementById('createAccount').addEventListener('click', function() {
+        window.location.href = 'account.html'; // Redirect to the Create Account page
+    });
+
+    document.getElementById('login').addEventListener('click', function() {
+        window.location.href = 'login.html'; // Redirect to the Login page
+    });
 }
+
 
 function get_user_name(){
     //returns the user's first and last name. Used when building the navigation menu to be the label for the menu items related to maintaining the user. The get_user_data function reads the user information from the data cookie that is created when the user logs in.

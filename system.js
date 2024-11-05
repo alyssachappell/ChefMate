@@ -241,70 +241,163 @@ function get_user_data(){
 }
 
 
-async function login(params){
-    // manage the login process
+async function login(params) {
+    // Manage the login process
 
-    const panel=tag("login_panel")
-
-    if(!params){ // no parameters, just show the form
-
-        if(panel.innerHTML===""){
-            panel.style.display="block"
-            panel.innerHTML=`
-                <form>
-                    <input placeholder="Email" name="email"><br>
-                    <input placeholder="Password" name="password" type="password"><br>
-                    <input type="hidden" name="mode" value="login">
-                    <button id="login_button" type="button" onclick="login(form_data(this,true))">Log In</button>
-                </form>        
-            `
-        }else{
-            toggle(panel)
-        }
-    }else{
-        // params were sent, it must be an attempt at loggin in.
-
-        // validate data before sending to server
-        if(!params.email || !params.password){
-            message({
-                title:"Login Failed",
-                message:"Email and password are both requied",
-                kind:"error",
-                seconds:5    
-            })
-            tag("login_button").innerHTML="Login"
-            return
+    // If parameters were sent, handle the login attempt
+    if (params) {
+        // Validate data before sending to the server
+        if (!params.email || !params.password) {
+            displayMessage("Login Failed", "Email and password are both required", "error");
+            return;
         }
 
-
-        if(!is_valid_email(params.email)){
-            message({
-                title:"Login Failed",
-                message:"Email is not in expected format",
-                kind:"error",
-                seconds:5    
-            })
-            tag("login_button").innerHTML="Login"
-            return
+        if (!is_valid_email(params.email)) {
+            displayMessage("Login Failed", "Email is not in the expected format", "error");
+            return;
         }
 
-
-        const response = await server_request(params)
-        if(response.status==="success"){
-            build_menu(authenticated_menu)
-            //show_menu(authenticated_menu)
-        }else{
-            message({
-                title:"Login Failed",
-                message:"Either the email address or password was not recognized",
-                kind:"error",
-                seconds:5    
-            })
-    
-            tag("login_button").innerHTML="Login"
+        const response = await server_request(params);
+        if (response.status === "success") {
+            // Redirect to dashboard page or call function to show dashboard
+            showDashboard(); // Call the function to display the dashboard
+        } else {
+            displayMessage("Login Failed", "Either the email address or password was not recognized", "error");
         }
     }
 }
+
+// Function to show the dashboard after logging in
+function showDashboard() {
+    const canvas = tag("canvas");
+    canvas.innerHTML = `
+        <div class="dashboard">
+            <h2>Welcome to Your Dashboard</h2>
+            <div class="button-container">
+                <button class="btn" onclick="addRecipe()">Add Recipe</button>
+                <button class="btn" onclick="viewCalendar()">View Calendar</button>
+                <button class="btn" onclick="myProfile()">My Profile</button>
+            </div>
+        </div>
+    `;
+}
+
+// Placeholder functions for the button actions
+function addRecipe() {
+    // Logic for adding a recipe
+    alert("Add Recipe clicked");
+}
+
+function viewCalendar() {
+    // Logic for viewing the calendar
+    alert("View Calendar clicked");
+}
+
+function myProfile() {
+    // Logic for viewing user profile
+    alert("My Profile clicked");
+}
+
+
+function showLoginPage() {
+    const canvas = tag("canvas");
+    canvas.innerHTML = `
+        <div class="login-page">
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div>
+                    <input placeholder="Email" name="email" required><br>
+                </div>
+                <div>
+                    <input placeholder="Password" name="password" type="password" required><br>
+                </div>
+                <input type="hidden" name="mode" value="login">
+                <button id="login_button" type="submit" class="btn">Log In</button>
+            </form>
+        </div>
+    `;
+}
+
+function handleLogin(event) {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+    login(data); // Call the login function with the gathered data
+}
+
+
+// Helper function to display messages
+function displayMessage(title, message, kind) {
+    message({
+        title: title,
+        message: message,
+        kind: kind,
+        seconds: 5    
+    });
+}
+
+// Displays the create account page
+function showCreateAccountPage() {
+    const canvas = tag("canvas");
+    canvas.innerHTML = `
+        <div class="create-account-page">
+            <h2>Create Account</h2>
+            <form id="createAccountForm" onsubmit="handleCreateAccount(event)">
+                <div>
+                    <input placeholder="Full Name" name="fullName" required><br>
+                </div>
+                <div>
+                    <input placeholder="Email" name="email" required><br>
+                </div>
+                <div>
+                    <input placeholder="Password" name="password" type="password" required><br>
+                </div>
+                <button id="create_account_button" type="submit" class="btn">Create Account</button>
+            </form>
+        </div>
+    `;
+}
+
+// Handles the create account form submission
+async function handleCreateAccount(event) {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    // Add validation if necessary, e.g., check email format
+
+    const response = await server_request(data); // Send data to the server for account creation
+    if (response.status === "success") {
+        // Handle successful account creation (e.g., redirect to login or homepage)
+        displayMessage("Success", "Account created successfully!", "success");
+        // Optionally, redirect to another page or show a success message
+    } else {
+        displayMessage("Account Creation Failed", response.message || "An error occurred while creating your account.", "error");
+    }
+}
+
+// Helper function to display messages
+function displayMessage(title, message, kind) {
+    // Assuming `message` is a function to display messages in your app
+    message({
+        title: title,
+        message: message,
+        kind: kind,
+        seconds: 5    
+    });
+}
+
+
+
+
+
+
 
 
 async function logout(){

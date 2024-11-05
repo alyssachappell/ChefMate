@@ -12,9 +12,23 @@
     <script src="app.js"></script>
     <script src="utilities.js"></script>
 
-    <title>Brookers Inventory</title>
+    <title>ChefMate Inventory</title>
 </head>
 <body onload="initialize_app()">
+    <div id="navbar-container"></div>
+
+    <script>
+        fetch('includes/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+    </script>
+ 
+
+    
+
     <div id="menu-button" >
         <i id="hamburger" class="fas fa-bars" onclick="show_menu()" ></i>
     </div>    
