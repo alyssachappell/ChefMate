@@ -226,9 +226,9 @@ function show_message(message, tag_or_id, seconds){//used to display alerts to t
 }
 
 
-function store_list(){
-    return get_user_data().store_list 
-}
+// function store_list(){
+//     return get_user_data().store_list 
+// }
 
 
 function get_user_data(){
@@ -268,36 +268,19 @@ async function login(params) {
 }
 
 // Function to show the dashboard after logging in
-function showDashboard() {
-    const canvas = tag("canvas");
-    canvas.innerHTML = `
-        <div class="dashboard">
-            <h2>Welcome to Your Dashboard</h2>
-            <div class="button-container">
-                <button class="btn" onclick="addRecipe()">Add Recipe</button>
-                <button class="btn" onclick="viewCalendar()">View Calendar</button>
-                <button class="btn" onclick="myProfile()">My Profile</button>
-            </div>
-        </div>
-    `;
-}
-
-// Placeholder functions for the button actions
-function addRecipe() {
-    // Logic for adding a recipe
-    alert("Add Recipe clicked");
-}
-
-function viewCalendar() {
-    // Logic for viewing the calendar
-    alert("View Calendar clicked");
-}
-
-function myProfile() {
-    // Logic for viewing user profile
-    alert("My Profile clicked");
-}
-
+// function showDashboard() {
+//     const canvas = tag("canvas");
+//     canvas.innerHTML = `
+//         <div class="dashboard">
+//             <h2>Welcome to Your Dashboard</h2>
+//             <div class="button-container">
+//                 <button class="btn" onclick="addRecipe()">Add Recipe</button>
+//                 <button class="btn" onclick="viewCalendar()">View Calendar</button>
+//                 <button class="btn" onclick="myProfile()">My Profile</button>
+//             </div>
+//         </div>
+//     `;
+// }
 
 function showLoginPage() {
     const canvas = tag("canvas");
@@ -392,11 +375,6 @@ function displayMessage(title, message, kind) {
         seconds: 5    
     });
 }
-
-
-
-
-
 
 
 

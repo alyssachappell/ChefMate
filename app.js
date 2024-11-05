@@ -66,7 +66,7 @@ function show_home() {
         }
     }
 
-    // The main page is rendered with the Brooker's Ice Cream logo. 
+    // The main page is rendered with the Chefmate logo.
     tag("canvas").innerHTML = `
         <div class="center-screen">
             <p><img height="${window.innerHeight * 0.6}" src="images/chefmate-logo.png" alt="ChefMate Logo"></p>
@@ -81,19 +81,38 @@ function show_home() {
     // The navigation menu is hidden (the three parallel lines are shown) when the homepage is rendered.
     hide_menu();
 
-    // Add event listeners to the buttons
-    document.getElementById('createAccount').addEventListener('click', showCreateAccountPage);
-
-
-    // Add event listeners to the buttons
+    // Add event listener for "Create Account" button to display the form
     document.getElementById('createAccount').addEventListener('click', function() {
-        window.location.href = 'account.html'; // Redirect to the Create Account page
-    });
-
-    document.getElementById('login').addEventListener('click', function() {
-        window.location.href = 'login.html'; // Redirect to the Login page
+        displayCreateAccountForm();
     });
 }
+
+// Function to display the create account form
+function displayCreateAccountForm() {
+    const formHtml = `
+        <form id="createAccountForm">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    `;
+
+    // Insert the form into the canvas
+    const centerScreen = document.querySelector('.center-screen');
+    centerScreen.innerHTML += formHtml; // Append the form HTML to the existing content
+
+    // Add event listener to the form to handle submission
+    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const formData = form_data(this, true); // Call your existing form_data logic
+        create_account(formData); // Call your account creation logic
+    });
+}
+
+
+
 
 
 function get_user_name(){
