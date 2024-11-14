@@ -1,3 +1,7 @@
+// Global month and year
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
 // Function to generate the calendar for a given month and year
 function showMonth(monthIndex, year) {
     const calendarDisplay = document.getElementById("calendar-display");
@@ -57,19 +61,28 @@ function showMonth(monthIndex, year) {
     calendarDisplay.appendChild(calendarTable);
 }
 
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
-
+// Function to change the year
 function changeYear(offset) {
     currentYear += offset;
     showMonth(currentMonth, currentYear);
 }
 
+function addRecipe() {
+    alert("Add Recipe button clicked!"); // Replace with form/modal to add a recipe
+}
+
+// Sidebar month selection function
+function selectMonth(monthIndex) {
+    currentMonth = monthIndex;
+    showMonth(currentMonth, currentYear);
+}
 
 // Show the current month and year on page load
 document.addEventListener("DOMContentLoaded", () => {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
     showMonth(currentMonth, currentYear);
+
+    // Attach event listeners to sidebar months
+    document.querySelectorAll("#month-list li").forEach((li, index) => {
+        li.addEventListener("click", () => selectMonth(index));
+    });
 });

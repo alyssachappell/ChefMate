@@ -3,49 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="calendar.css"> <!-- Updated path -->
-    <link rel="stylesheet" href="app.css"> <!-- Updated path -->
+    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="app.css">
 
     <title>Calendar Display</title>
 </head>
-<nav>
-    <div id="navbar-container"></div>
-
-    <script>
-        fetch('../includes/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading the navbar:', error));
-    </script>
-</nav>
 <body>
+    <nav>
+        <div id="navbar-container"></div>
+        <script>
+            fetch('../includes/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading the navbar:', error));
+        </script>
+    </nav>
 
-    
     <div class="container">
         <aside class="sidebar">
             <h3>Other Months</h3>
             <ul id="month-list"> 
-                <li onclick="showMonth(0)">January</li>
-                <li onclick="showMonth(1)">February</li>
-                <li onclick="showMonth(2)">March</li>
-                <li onclick="showMonth(3)">April</li>
-                <li onclick="showMonth(4)">May</li>
-                <li onclick="showMonth(5)">June</li>
-                <li onclick="showMonth(6)">July</li>
-                <li onclick="showMonth(7)">August</li>
-                <li onclick="showMonth(8)">September</li>
-                <li onclick="showMonth(9)">October</li>
-                <li onclick="showMonth(10)">November</li>
-                <li onclick="showMonth(11)">December</li>
+                <li onclick="selectMonth(0)">January</li>
+                <li onclick="selectMonth(1)">February</li>
+                <li onclick="selectMonth(2)">March</li>
+                <li onclick="selectMonth(3)">April</li>
+                <li onclick="selectMonth(4)">May</li>
+                <li onclick="selectMonth(5)">June</li>
+                <li onclick="selectMonth(6)">July</li>
+                <li onclick="selectMonth(7)">August</li>
+                <li onclick="selectMonth(8)">September</li>
+                <li onclick="selectMonth(9)">October</li>
+                <li onclick="selectMonth(10)">November</li>
+                <li onclick="selectMonth(11)">December</li>
             </ul>
         </aside>
         <main class="calendar" id="calendar-display">
             <button onclick="changeYear(-1)">Previous Year</button>
             <button onclick="changeYear(1)">Next Year</button>
+            <!-- Calendar will be dynamically rendered here -->
+            <button onclick="addRecipe()">Add Recipe</button> <!-- New Add Recipe button -->
         </main>
-                
     </div>
 
     <script src="calendar.js"></script> 
