@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head><!-- test -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="recipes-list.css"> <!-- Updated path -->
+    <link rel="stylesheet" href="app.css"> <!-- Updated path -->
+
+    <title>Calendar Display</title>
+</head>
+<nav>
+    <div id="navbar-container"></div>
+
+    <script>
+        fetch('../includes/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+    </script>
+</nav>
+<body>
+
+    
+    <div class="container">
+        <h2>this page is for the recipes</h2>
+                
+    </div>
+
+    <script src="calendar.js"></script> 
+</body>
+</html>
