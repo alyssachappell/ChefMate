@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
- <head><!-- test -->
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="recipes-list.css"> <!-- Updated path -->
+    <!-- <link rel="stylesheet" href="recipes-list.css"> Updated path -->
     <link rel="stylesheet" href="app.css"> <!-- Updated path -->
 
-    <title>Calendar Display</title>
+    <title>Recipe List</title>
 </head>
 <nav>
     <div id="navbar-container"></div>
@@ -21,42 +21,12 @@
     </script>
 </nav>
 <body>
-
-    
     <div class="container">
-        <h2>this page is for the recipes</h2>
-        <div id="recipes-list"></div> <!-- Container for the recipes -->
-                
+        <h1>Chef-Mate's Delicious Recipes!</h1>
+        <div id="recipes-list" class="recipe-container"></div> <!-- Container for the recipes -->
     </div>
 
-    <script>
-        // URL of your Apps Script Web App
-        const apiUrl = 'https://script.google.com/macros/s/AKfycbzCvXixzCjgcyeYNaZe3QzZw0Vk9vKX60XJmNUxzo8HUzzT8rPGqIJKE6gZFsYKL_U/exec';
-
-        // Fetch recipes from Apps Script
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                return response.json();
-            })
-            .then(recipes => {
-                const recipesContainer = document.getElementById('recipes-list');
-
-                // Dynamically create HTML for each recipe
-                recipes.forEach(recipe => {
-                    const recipeElement = document.createElement('div');
-                    recipeElement.classList.add('recipe');
-                    recipeElement.innerHTML = `
-                        <h3>${recipe.Name}</h3>
-                        <p><strong>Ingredients:</strong> ${recipe.Ingredients}</p>
-                        <p><strong>Prep Time:</strong> ${recipe['Prep Time']}</p>
-                        <p><strong>Cook Time:</strong> ${recipe['Cook Time']}</p>
-                        <p><strong>Diet:</strong> ${recipe.Diet}</p>
-                    `;
-                    recipesContainer.appendChild(recipeElement);
-                });
-            })
-            .catch(error => console.error('Error fetching recipes:', error));
-    </script>
+    <!-- Link to your external script.js file -->
+    <script src="script.js"></script>
 </body>
 </html>
