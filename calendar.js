@@ -17,6 +17,7 @@ function showMonth(monthIndex, year) {
     // Create the calendar table
     const calendarTable = document.createElement("table");
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    //"test comment"
 
     // Add days of the week header
     const headerRow = document.createElement("tr");
